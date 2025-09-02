@@ -147,6 +147,7 @@ export const FormRenderer = ({ stage, data, onUpdate }: FormRendererProps) => {
     if (mentalHealthComponent) {
       return (
         <motion.div
+        className="!bg-red-400"
           variants={animationPresets.mentalHealth.container}
           initial="initial"
           animate="animate"

@@ -103,9 +103,9 @@ export const MentalHealthEnhanced = ({ data, onUpdate, config }: MentalHealthEnh
           >
             {/* Question */}
             <div className="flex items-start gap-2 sm:gap-3">
-              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-medium text-primary shrink-0">
+              {/* <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-medium text-primary shrink-0">
                 {i + 1}
-              </div>
+              </div> */}
               <div className="bg-muted/50 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm max-w-[85%] sm:max-w-[80%]">
                 {config.scale.questions[i]}
               </div>
@@ -150,9 +150,9 @@ export const MentalHealthEnhanced = ({ data, onUpdate, config }: MentalHealthEnh
       >
         {/* Current Question */}
         <div className="flex items-start gap-2 sm:gap-3">
-          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-medium text-primary shrink-0">
+          {/* <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-medium text-primary shrink-0">
             {currentIndex + 1}
-          </div>
+          </div> */}
           <div className="bg-muted/50 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm max-w-[85%] sm:max-w-[80%]">
             {questionText}
           </div>
@@ -189,7 +189,7 @@ export const MentalHealthEnhanced = ({ data, onUpdate, config }: MentalHealthEnh
 
     return (
       <motion.div 
-        className="flex gap-2 p-2 sm:p-4 border-t bg-background"
+        className="flex gap-2 py-4 px-2 border-t"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
@@ -227,14 +227,14 @@ export const MentalHealthEnhanced = ({ data, onUpdate, config }: MentalHealthEnh
 
   return (
     <motion.div 
-      className="flex flex-col h-[500px] sm:h-[600px] bg-background rounded-lg border"
+      className="flex flex-col h-[500px] sm:h-[600px]"
       variants={animationPresets.mentalHealth.container}
       initial="initial"
       animate="animate"
       exit="exit"
     >
       {/* Header */}
-      <motion.div 
+      {/* <motion.div 
         className="p-3 sm:p-4 border-b bg-muted/30"
         variants={animationPresets.mentalHealth.infoBox}
       >
@@ -245,12 +245,12 @@ export const MentalHealthEnhanced = ({ data, onUpdate, config }: MentalHealthEnh
         <p className="text-xs text-muted-foreground">
           You can select suggested options or type your own response for each question.
         </p>
-      </motion.div>
+      </motion.div> */}
 
       {/* Chat Area */}
       <div className="flex-1 overflow-hidden flex flex-col">
         {/* Chat History */}
-        <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-3 sm:space-y-4">
+        <div className="flex-1 overflow-y-auto pb-4 space-y-3 sm:space-y-4">
           {renderChatHistory()}
           
           <AnimatePresence mode="wait">
