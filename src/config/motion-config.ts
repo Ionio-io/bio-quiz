@@ -52,8 +52,8 @@ export const formField: Variants = {
 
 // Button animations
 export const buttonHover = {
-  scale: 1.02,
-  transition: { duration: 0.2 }
+//   scale: 1.02,
+//   transition: { duration: 0.2 }
 };
 
 export const buttonTap = {

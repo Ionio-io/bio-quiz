@@ -76,6 +76,8 @@ export const NumberQuestion = ({ config, value, onChange }: QuestionProps) => {
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.15 }}
+        // whileHover={{ scale: 1.02 }}
+        className="group"
       >
         <Input
           id={config.id}
@@ -86,7 +88,7 @@ export const NumberQuestion = ({ config, value, onChange }: QuestionProps) => {
           step={config.step}
           min={config.validation?.min}
           max={config.validation?.max}
-          className={config.className?.input || "w-full max-w-xs sm:max-w-sm"}
+          className={`${config.className?.input || "w-full max-w-xs sm:max-w-sm"} transition-all duration-200 focus:border-primary focus:shadow-md focus:shadow-primary/20`}
         />
       </motion.div>
     </motion.div>
@@ -110,7 +112,7 @@ export const RadioQuestion = ({ config, value, onChange }: QuestionProps) => {
           className={config.className?.description || "text-xs text-muted-foreground mb-2"}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.01, duration: 0.1 }}
         >
           {config.description}
         </motion.p>
@@ -122,13 +124,26 @@ export const RadioQuestion = ({ config, value, onChange }: QuestionProps) => {
         {config.options?.map((option, index) => (
           <motion.div 
             key={option.value} 
-            className={config.className?.option || "flex items-center space-x-2 py-1"}
+            className={`${config.className?.option || "flex items-center space-x-2 py-1"} group cursor-pointer rounded-md p-2 transition-all duration-200 hover:bg-primary/5 hover:shadow-sm`}
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 + index * 0.03 }}
+            // whileHover={{ 
+            //   scale: 1.02,
+            //   x: 2,
+            //   transition: { duration: 0.2 }
+            // }}
+            whileTap={{ scale: 0.98 }}
           >
-            <RadioGroupItem value={option.value} id={`${config.id}-${option.value}`} className="shrink-0" />
-            <Label htmlFor={`${config.id}-${option.value}`} className={config.className?.optionLabel || "text-xs sm:text-sm cursor-pointer"}>
+            <RadioGroupItem 
+              value={option.value} 
+              id={`${config.id}-${option.value}`} 
+              className="shrink-0 group-hover:border-primary/50 transition-colors duration-200" 
+            />
+            <Label 
+              htmlFor={`${config.id}-${option.value}`} 
+              className={`${config.className?.optionLabel || "text-xs sm:text-sm cursor-pointer"} group-hover:text-primary transition-colors duration-200`}
+            >
               {option.label}
             </Label>
           </motion.div>
@@ -144,18 +159,24 @@ export const CheckboxQuestion = ({ config, value, onChange }: QuestionProps) => 
 
   return (
     <motion.div 
-      className={config.className?.container || "flex items-center space-x-2 py-2"}
+      className={`${config.className?.container || "flex items-center space-x-2 py-2"} group cursor-pointer rounded-md p-2 transition-all duration-200 hover:bg-primary/5 hover:shadow-sm`}
       initial={{ opacity: 0, y: 5 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
+    //   whileHover={{ 
+    //     scale: 1.02,
+    //     x: 2,
+    //     transition: { duration: 0.2 }
+    //   }}
+      whileTap={{ scale: 0.98 }}
     >
       <Checkbox
         id={config.id}
         checked={boolValue}
         onCheckedChange={onChange}
-        className="shrink-0"
+        className="shrink-0 group-hover:border-primary/50 transition-colors duration-200"
       />
-      <Label htmlFor={config.id} className={config.className?.label || "text-xs sm:text-sm cursor-pointer"}>
+      <Label htmlFor={config.id} className={`${config.className?.label || "text-xs sm:text-sm cursor-pointer"} group-hover:text-primary transition-colors duration-200`}>
         {config.label}
       </Label>
     </motion.div>
@@ -203,15 +224,21 @@ export const MentalHealthScaleQuestion = ({ config, value, onChange }: QuestionP
               <div className="shrink-0">
                 {i + 1}.
               </div>
-              <div className={config.className?.question || "max-w-[85%] rounded-lg bg-muted border border-border px-3 py-2 text-sm"}>
+              <motion.div 
+                className={`${config.className?.question || "max-w-[85%] rounded-lg bg-muted border border-border px-3 py-2 text-sm"} hover:bg-muted/80 hover:border-primary/20 transition-all duration-200`}
+                // whileHover={{ scale: 1.01 }}
+              >
                 {config.scale?.questions[i]}
-              </div>
+              </motion.div>
             </div>
             {responses[i] !== -1 && (
               <div className="flex justify-end">
-                <div className={config.className?.response || "max-w-[85%] w-fit rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm"}>
+                <motion.div 
+                  className={`${config.className?.response || "max-w-[85%] w-fit rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm"} hover:bg-primary/90 hover:shadow-sm transition-all duration-200`}
+                //   whileHover={{ scale: 1.02 }}
+                >
                   {config.scale?.responses.find(r => r.value === responses[i])?.label}
-                </div>
+                </motion.div>
               </div>
             )}
           </div>
@@ -236,20 +263,31 @@ export const MentalHealthScaleQuestion = ({ config, value, onChange }: QuestionP
           <div className="shrink-0">
             {currentIndex + 1}.
           </div>
-          <div className={config.className?.question || "max-w-[85%] rounded-lg bg-muted border border-border px-3 py-2 text-sm"}>
+          <motion.div 
+            className={`${config.className?.question || "max-w-[85%] rounded-lg bg-muted border border-border px-3 py-2 text-sm"} hover:bg-muted/80 hover:border-primary/20 transition-all duration-200`}
+            // whileHover={{ scale: 1.01 }}
+          >
             {questionText}
-          </div>
+          </motion.div>
         </div>
         <div className="grid grid-cols-1 gap-2">
           {config.scale?.responses.map(option => (
-            <Button
+            <motion.div
               key={option.value}
-              variant="outline"
-              className="justify-center"
-              onClick={() => handleSelect(option.value)}
+            //   whileHover={{ 
+            //     scale: 1.02,
+            //     transition: { duration: 0.2 }
+            //   }}
+              whileTap={{ scale: 0.98 }}
             >
-              {option.label}
-            </Button>
+              <Button
+                variant="outline"
+                className="justify-center w-full hover:bg-primary/5 hover:border-primary/50 hover:shadow-sm transition-all duration-200"
+                onClick={() => handleSelect(option.value)}
+              >
+                {option.label}
+              </Button>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -272,9 +310,15 @@ export const MentalHealthScaleQuestion = ({ config, value, onChange }: QuestionP
         {renderCurrentQuestion()}
 
         {allDone && (
-          <div className="rounded-lg border border-green-500/30 bg-green-500/10 p-4 text-sm text-green-600">
+          <motion.div 
+            className="rounded-lg border border-green-500/30 bg-green-500/10 p-4 text-sm text-green-600 hover:bg-green-500/15 hover:border-green-500/40 transition-all duration-200"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            // whileHover={{ scale: 1.02 }}
+          >
             All mental health questions completed. You can proceed to the next step.
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

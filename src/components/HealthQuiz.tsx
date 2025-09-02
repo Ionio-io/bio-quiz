@@ -70,9 +70,6 @@ export const HealthQuiz = () => {
     setQuizData(defaultData);
   }, []);
 
-
-  console.log(quizData, "quizData");
-
   const updateQuizData = (data: Partial<QuizData>) => {
     setQuizData(prev => ({ ...prev, ...data }));
   };
@@ -113,6 +110,13 @@ export const HealthQuiz = () => {
     }
   };
 
+  const goToStep = (stepIndex: number) => {
+    // Allow navigation to previous steps or current step
+    if (stepIndex <= currentStep) {
+      setCurrentStep(stepIndex);
+    }
+  };
+
   const progress = ((currentStep + 1) / steps.length) * 100;
 
   const renderCurrentForm = () => {
@@ -127,10 +131,8 @@ export const HealthQuiz = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background py-4 px-2 sm:py-8 sm:px-4"
-      style={{
-        background: "radial-gradient(ellipse 80% 90% at 50% 0%, rgba(34, 197, 94, 0.25), transparent 70%), #000000",
-      }}>
+    <div className="min-h-screen py-4 px-2 sm:py-8 sm:px-4 relative overflow-hidden">
+      {/* Animated gradient overlay */}
       <motion.div
         className="max-w-4xl mx-auto space-y-4 sm:space-y-8"
         variants={animationPresets.page}
@@ -168,29 +170,56 @@ export const HealthQuiz = () => {
             >
               <div className="flex flex-col items-center">
                 <motion.div
-                  className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-medium transition-all ${index < currentStep
-                      ? "bg-primary border-primary text-primary-foreground"
+                  className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer group relative ${
+                    index < currentStep
+                      ? "bg-primary border-primary text-primary-foreground shadow-lg shadow-primary/25"
                       : index === currentStep
-                        ? "border-primary text-primary bg-background"
-                        : "border-muted-foreground/30 text-muted-foreground bg-background"
-                    }`}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                        ? "border-primary text-primary bg-background shadow-md shadow-primary/20"
+                        : index <= currentStep
+                          ? "border-muted-foreground/50 text-muted-foreground bg-background hover:border-primary/50 hover:text-primary/70 hover:shadow-sm"
+                          : "border-muted-foreground/30 text-muted-foreground bg-background"
+                  }`}
+                  whileHover={index <= currentStep ? { 
+                    scale: 1.15, 
+                    rotate: [0, -2, 2, 0],
+                    transition: { duration: 0.3 }
+                  } : {}}
+                  whileTap={index <= currentStep ? { scale: 0.9 } : {}}
+                  onClick={() => goToStep(index)}
                 >
                   {index < currentStep ? (
                     <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                   ) : (
                     index + 1
                   )}
+                  {/* Hover tooltip */}
+                  {index <= currentStep && (
+                    <motion.div
+                      className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-foreground text-background text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10"
+                      initial={{ opacity: 0, y: 5 }}
+                      whileHover={{ opacity: 1, y: 0 }}
+                    >
+                      {step.title}
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-foreground"></div>
+                    </motion.div>
+                  )}
                 </motion.div>
-                <span className="text-xs text-muted-foreground mt-1 hidden md:block max-w-16 text-center leading-tight">
+                <motion.span 
+                  className={`text-xs mt-1 hidden md:block max-w-16 text-center leading-tight transition-colors duration-200 ${
+                    index <= currentStep ? "text-foreground" : "text-muted-foreground"
+                  }`}
+                  whileHover={index <= currentStep ? { color: "hsl(var(--primary))" } : {}}
+                >
                   {step.title.split(' ')[0]}
-                </span>
+                </motion.span>
               </div>
               {index < steps.length - 1 && (
                 <motion.div
-                  className={`w-4 sm:w-6 md:w-12 h-0.5 mx-1 sm:mx-2 ${index < currentStep ? "bg-primary" : "bg-muted-foreground/30"
-                    }`}
+                  className={`w-4 sm:w-6 md:w-12 h-0.5 mx-1 sm:mx-2 transition-all duration-300 ${
+                    index < currentStep 
+                      ? "bg-primary shadow-sm shadow-primary/30" 
+                      : "bg-muted-foreground/30"
+                  }`}
                   variants={animationPresets.navigation.progress}
                 />
               )}
@@ -207,29 +236,42 @@ export const HealthQuiz = () => {
           key={currentStep}
           className="px-2"
         >
-          <Card className="border-border bg-card shadow-lg w-full">
-            <CardContent className="py-3 sm:py-4 px-3 sm:px-6">
+          <motion.div
+            className="w-full"
+          >
+            <Card className="border-border bg-card shadow-lg w-full">
+              <CardContent className="py-3 sm:py-4 px-3 sm:px-6">
               {/* Section Header */}
               <motion.div
-                className="flex items-center gap-3 mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-border"
+                className="flex items-center gap-3 mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-border group"
                 variants={animationPresets.formStage.item}
               >
                 <motion.div
-                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center "
+                  // whileHover={{ 
+                  //   scale: 1.15, 
+                  //   rotate: [0, -5, 5, 0],
+                  //   transition: { duration: 0.4 }
+                  // }}
                   transition={{ duration: 0.2 }}
                 >
                   {React.createElement(steps[currentStep].icon, {
                     className: "h-4 w-4 sm:h-6 sm:w-6 text-primary"
                   })}
                 </motion.div>
-                <div>
-                  <h2 className="text-lg sm:text-xl font-semibold text-card-foreground tracking-tight mt-2">
+                <div className="flex-1">
+                  <motion.h2 
+                    className="text-lg sm:text-xl font-semibold text-card-foreground tracking-tight mt-2 "
+                    // whileHover={{ x: 2 }}
+                  >
                     {steps[currentStep].title}
-                  </h2>
-                  <p className="text-muted-foreground tracking-tight text-xs sm:text-sm mt-1">
+                  </motion.h2>
+                  <motion.p 
+                    className="text-muted-foreground tracking-tight text-xs sm:text-sm mt-1 "
+                    // whileHover={{ x: 2 }}
+                  >
                     {steps[currentStep].description}
-                  </p>
+                  </motion.p>
                 </div>
               </motion.div>
 
@@ -241,6 +283,7 @@ export const HealthQuiz = () => {
               </div>
             </CardContent>
           </Card>
+          </motion.div>
         </motion.div>
 
         {/* Navigation Buttons */}
@@ -254,8 +297,11 @@ export const HealthQuiz = () => {
               transition={{ duration: 0.3 }}
             >
               <motion.div
-                whileHover={animationPresets.navigation.button.hover}
-                whileTap={animationPresets.navigation.button.tap}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.95 }}
                 aria-disabled={currentStep === 0}
                 className="flex-1 sm:flex-none"
               >
@@ -263,22 +309,25 @@ export const HealthQuiz = () => {
                   variant="outline"
                   onClick={prevStep}
                   disabled={currentStep === 0}
-                  className="flex items-center gap-1 text-sm"
+                  className="flex items-center gap-1 text-sm hover:bg-primary/5 hover:border-primary/30 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span className="hidden sm:inline">Back</span>
                 </Button>
               </motion.div>
               <motion.div
-                whileHover={animationPresets.navigation.button.hover}
-                whileTap={animationPresets.navigation.button.tap}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.95 }}
                 aria-disabled={!canProceed()}
                 className="flex-1 sm:flex-none"
               >
                 <Button
                   onClick={nextStep}
                   disabled={!canProceed()}
-                  className="flex items-center gap-1  text-sm"
+                  className="flex items-center gap-1 text-sm hover:shadow-lg hover:shadow-primary/25 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="hidden sm:inline">Next</span>
                   <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />

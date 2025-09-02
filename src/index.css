@@ -16,19 +16,19 @@ All colors MUST be HSL.
     --card-foreground: 0 0% 98.0392%;
     --popover: 0 0% 1.9608%;
     --popover-foreground: 0 0% 98.0392%;
-    --primary: 135 59% 49%;
-    --primary-foreground: 0 0% 1.9608%;
-    --secondary: 0 0% 10.1961%;
-    --secondary-foreground: 0 0% 98.0392%;
-    --muted: 0 0% 10.1961%;
-    --muted-foreground: 0 0% 63.9216%;
-    --accent: 0 0% 10.1961%;
-    --accent-foreground: 0 0% 98.0392%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8205% 30.5882%;
     --destructive-foreground: 0 0% 98.0392%;
-    --border: 0 0% 14.9020%;
-    --input: 0 0% 14.9020%;
-    --ring: 142.0859 70.5628% 45.2941%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 142 76% 36%;
     --chart-1: 142.0859 70.5628% 45.2941%;
     --chart-2: 217.2193 91.2195% 59.8039%;
     --chart-3: 258.3117 89.5349% 66.2745%;
@@ -65,19 +65,19 @@ All colors MUST be HSL.
   --card-foreground: 0 0% 1.9608%;
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 1.9608%;
-  --primary: 142.0859 70.5628% 45.2941%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 96.0784%;
-  --secondary-foreground: 0 0% 1.9608%;
-  --muted: 0 0% 96.0784%;
-  --muted-foreground: 220 8.9362% 46.0784%;
-  --accent: 0 0% 96.0784%;
-  --accent-foreground: 0 0% 1.9608%;
+  --primary: 142 76% 36%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 2%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 142 76% 36%;
+  --accent-foreground: 0 0% 98%;
   --destructive: 0 84.2365% 60.1961%;
   --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 89.8039%;
-  --input: 0 0% 89.8039%;
-  --ring: 142.0859 70.5628% 45.2941%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 142 76% 36%;
   --chart-1: 142.0859 70.5628% 45.2941%;
   --chart-2: 217.2193 91.2195% 59.8039%;
   --chart-3: 258.3117 89.5349% 66.2745%;
@@ -120,4 +120,15 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-inter;
   }
+}
+
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

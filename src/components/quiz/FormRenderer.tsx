@@ -44,22 +44,34 @@ export const FormRenderer = ({ stage, data, onUpdate }: FormRendererProps) => {
     if (type === "info") {
       if (typeof content === "string") {
         return (
-          <div className={className}>
+          <motion.div 
+            className={`${className} hover:bg-primary/5 hover:border-primary/20 transition-all duration-200`}
+            whileHover={{ scale: 1.01 }}
+          >
             <p className="text-sm text-foreground">
               <strong>Privacy Note:</strong> {content}
             </p>
-          </div>
+          </motion.div>
         );
       } else {
         return (
-          <div className={className}>
+          <motion.div 
+            className={`${className} hover:bg-primary/5 hover:border-primary/20 transition-all duration-200`}
+            whileHover={{ scale: 1.01 }}
+          >
             <h4 className="font-medium mb-2">{content.title}</h4>
             <ul className="text-sm text-muted-foreground space-y-1">
               {content.items.map((item, index) => (
-                <li key={index}>• {item}</li>
+                <motion.li 
+                  key={index}
+                  whileHover={{ x: 2, color: "hsl(var(--primary))" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  • {item}
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         );
       }
     }
@@ -117,11 +129,17 @@ export const FormRenderer = ({ stage, data, onUpdate }: FormRendererProps) => {
 
         const bmiConfig = stage.customComponents.bmi as { className: string };
         return (
-          <div className={bmiConfig.className}>
+          <motion.div 
+            className={`${bmiConfig.className} hover:bg-primary/5 hover:border-primary/20 transition-all duration-200`}
+            whileHover={{ scale: 1.01 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <p className="text-sm">
               <strong>Your BMI:</strong> {bmi.toFixed(1)} kg/m²{bmiCategory}
             </p>
-          </div>
+          </motion.div>
         );
       }
     }

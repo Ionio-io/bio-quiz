@@ -280,7 +280,7 @@ export const QuizResults = ({ data }: QuizResultsProps) => {
       {/* Risk Categories Grid */}
       <div className="grid gap-6 md:grid-cols-2">
         {riskScores.map((item, index) => (
-          <Card key={index} className="group hover:shadow-md transition-shadow duration-200">
+          <Card key={index} className="group hover:shadow-md transition-shadow duration-200 relative bg-gradient-to-t from-background to-primary/15">
             <CardHeader className="pb-4">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
