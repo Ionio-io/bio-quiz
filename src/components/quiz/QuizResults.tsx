@@ -1,5 +1,4 @@
 import { type ConfettiRef } from "@/components/magicui/confetti";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -273,7 +272,7 @@ export const QuizResults = ({ data }: QuizResultsProps) => {
           </div>
 
           <div className="mt-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
-            <p className="text-sm font-medium text-primary-foreground/80">{recommendation.action}</p>
+            <p className="text-sm font-medium text-primary/80">{recommendation.action}</p>
           </div>
         </CardContent>
       </Card>
@@ -293,10 +292,10 @@ export const QuizResults = ({ data }: QuizResultsProps) => {
                     <p className="text-xs text-muted-foreground mt-1">{item.description}</p>
                   </div>
                 </div>
-                <Badge className={`${getRiskColor(item.risk)} border shrink-0`}>
+                {/* <Badge className={`${getRiskColor(item.risk)} border shrink-0`}>
                   {getRiskIcon(item.risk)}
                   <span className="ml-1 text-xs font-medium">{item.risk.toUpperCase()}</span>
-                </Badge>
+                </Badge> */}
               </div>
             </CardHeader>
 
