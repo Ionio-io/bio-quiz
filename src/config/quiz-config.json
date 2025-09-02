@@ -1,0 +1,374 @@
+{
+  "stages": [
+    {
+      "id": "basic",
+      "title": "Basic Information",
+      "description": "Let's start with some basic details",
+      "icon": "User",
+      "layout": "vertical",
+      "questions": [
+        {
+          "id": "age",
+          "type": "number",
+          "label": "What's your age?",
+          "description": "This helps us calculate age-related health risks accurately.",
+          "placeholder": "Enter your age",
+          "required": true,
+          "validation": {
+            "min": 1,
+            "max": 120
+          },
+          "className": {
+            "container": "space-y-1.5",
+            "label": "text-sm font-medium",
+            "description": "text-xs text-muted-foreground mb-2",
+            "input": "max-w-xs"
+          }
+        },
+        {
+          "id": "gender",
+          "type": "radio",
+          "label": "What's your biological sex?",
+          "description": "Biological sex affects health risk calculations.",
+          "required": true,
+          "options": [
+            { "value": "male", "label": "Male" },
+            { "value": "female", "label": "Female" }
+          ],
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium",
+            "description": "text-xs text-muted-foreground mb-2",
+            "option": "flex items-center space-x-2",
+            "optionLabel": "text-xs"
+          }
+        }
+      ],
+      "footer": {
+        "type": "info",
+        "content": "Privacy Note: Your assessment is completely anonymous. We'll only ask for your contact information at the end if you want to receive your detailed report or connect with our specialists.",
+        "className": "bg-primary/10 border border-primary/20 rounded-lg p-4"
+      }
+    },
+    {
+      "id": "cardiovascular",
+      "title": "Heart Health",
+      "description": "Assessing your cardiovascular risk",
+      "icon": "Heart",
+      "layout": "vertical",
+      "questions": [
+        {
+          "id": "smokingStatus",
+          "type": "radio",
+          "label": "Smoking Status",
+          "description": "Smoking significantly affects cardiovascular risk.",
+          "required": true,
+          "defaultValue": "never",
+          "options": [
+            { "value": "never", "label": "Never smoked" },
+            { "value": "former", "label": "Former smoker (quit over 1 year ago)" },
+            { "value": "current", "label": "Current smoker" }
+          ],
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium",
+            "description": "text-xs text-muted-foreground mb-3",
+            "option": "flex items-center space-x-2",
+            "optionLabel": "text-xs"
+          }
+        },
+        {
+          "id": "diabetesHistory",
+          "type": "checkbox",
+          "label": "I have been diagnosed with diabetes",
+          "required": false,
+          "className": {
+            "container": "flex items-center space-x-2",
+            "label": "text-xs"
+          }
+        },
+        {
+          "id": "totalCholesterol",
+          "type": "number",
+          "label": "Total Cholesterol (mg/dL)",
+          "description": "Normal range: <200 mg/dL",
+          "placeholder": "e.g. 180",
+          "required": false,
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium",
+            "description": "text-xs text-muted-foreground mb-2"
+          }
+        },
+        {
+          "id": "hdlCholesterol",
+          "type": "number",
+          "label": "HDL Cholesterol (mg/dL)",
+          "description": "Higher is better: >40 (men), >50 (women)",
+          "placeholder": "e.g. 45",
+          "required": false,
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium",
+            "description": "text-xs text-muted-foreground mb-2"
+          }
+        },
+        {
+          "id": "systolicBP",
+          "type": "number",
+          "label": "Systolic Blood Pressure (mmHg)",
+          "description": "The top number in your blood pressure reading. Normal: <120 mmHg",
+          "placeholder": "e.g. 120",
+          "required": false,
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium",
+            "description": "text-xs text-muted-foreground mb-2",
+            "input": "max-w-xs"
+          }
+        }
+      ],
+      "layoutConfig": {
+        "grid": {
+          "totalCholesterol": "md:col-span-1",
+          "hdlCholesterol": "md:col-span-1"
+        }
+      }
+    },
+    {
+      "id": "diabetes",
+      "title": "Diabetes Risk",
+      "description": "Understanding your diabetes risk factors",
+      "icon": "Activity",
+      "layout": "vertical",
+      "questions": [
+        {
+          "id": "weight",
+          "type": "number",
+          "label": "Weight (kg)",
+          "placeholder": "e.g. 70",
+          "required": false,
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium"
+          }
+        },
+        {
+          "id": "height",
+          "type": "number",
+          "label": "Height (cm)",
+          "placeholder": "e.g. 175",
+          "required": false,
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium"
+          }
+        },
+        {
+          "id": "physicalActivity",
+          "type": "radio",
+          "label": "Physical Activity Level",
+          "description": "How would you describe your typical weekly physical activity?",
+          "required": true,
+          "defaultValue": "moderate",
+          "options": [
+            { "value": "none", "label": "Little or no exercise" },
+            { "value": "light", "label": "Light exercise (1-2 days/week)" },
+            { "value": "moderate", "label": "Moderate exercise (3-4 days/week)" },
+            { "value": "vigorous", "label": "Vigorous exercise (5+ days/week)" }
+          ],
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium",
+            "description": "text-xs text-muted-foreground mb-3",
+            "option": "flex items-center space-x-2",
+            "optionLabel": "text-xs"
+          }
+        },
+        {
+          "id": "familyDiabetes",
+          "type": "checkbox",
+          "label": "I have a family history of diabetes (parent, sibling, or child with diabetes)",
+          "required": false,
+          "className": {
+            "container": "flex items-center space-x-2",
+            "label": "text-xs"
+          }
+        }
+      ],
+      "layoutConfig": {
+        "grid": {
+          "weight": "md:col-span-1",
+          "height": "md:col-span-1"
+        }
+      },
+      "customComponents": {
+        "bmi": {
+          "type": "calculated",
+          "dependencies": ["weight", "height"],
+          "className": "bg-muted/50 rounded-lg p-3"
+        }
+      }
+    },
+    {
+      "id": "depression",
+      "title": "Depression Screening",
+      "description": "PHQ-9 Depression Assessment",
+      "icon": "Heart",
+      "layout": "special",
+      "questions": [
+        {
+          "id": "phq9Responses",
+          "type": "mental_health_enhanced",
+          "label": "Depression Screening (PHQ-9)",
+          "description": "Over the last 2 weeks, how often have you been bothered by any of the following problems?",
+          "required": true,
+          "scale": {
+            "name": "PHQ-9",
+            "questions": [
+              "Little interest or pleasure in doing things",
+              "Feeling down, depressed, or hopeless",
+              "Trouble falling or staying asleep, or sleeping too much",
+              "Feeling tired or having little energy",
+              "Poor appetite or overeating",
+              "Feeling bad about yourself or that you are a failure",
+              "Trouble concentrating on things",
+              "Moving or speaking slowly, or being fidgety/restless",
+              "Thoughts that you would be better off dead or hurting yourself"
+            ],
+            "responses": [
+              { "value": 0, "label": "Not at all" },
+              { "value": 1, "label": "Several days" },
+              { "value": 2, "label": "More than half the days" },
+              { "value": 3, "label": "Nearly every day" }
+            ]
+          },
+          "className": {
+            "container": "space-y-6",
+            "header": "bg-primary/10 border border-primary/20 rounded-lg p-4",
+            "question": "max-w-[85%] rounded-lg bg-muted border border-border px-3 py-2 text-sm",
+            "response": "max-w-[85%] w-fit rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm",
+            "input": "w-full mt-2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "anxiety",
+      "title": "Anxiety Screening",
+      "description": "GAD-7 Anxiety Assessment",
+      "icon": "Brain",
+      "layout": "special",
+      "questions": [
+        {
+          "id": "gad7Responses",
+          "type": "mental_health_enhanced",
+          "label": "Anxiety Screening (GAD-7)",
+          "description": "Over the last 2 weeks, how often have you been bothered by any of the following problems?",
+          "required": true,
+          "scale": {
+            "name": "GAD-7",
+            "questions": [
+              "Feeling nervous, anxious, or on edge",
+              "Not being able to stop or control worrying",
+              "Worrying too much about different things",
+              "Trouble relaxing",
+              "Being so restless that it's hard to sit still",
+              "Becoming easily annoyed or irritable",
+              "Feeling afraid as if something awful might happen"
+            ],
+            "responses": [
+              { "value": 0, "label": "Not at all" },
+              { "value": 1, "label": "Several days" },
+              { "value": 2, "label": "More than half the days" },
+              { "value": 3, "label": "Nearly every day" }
+            ]
+          },
+          "className": {
+            "container": "space-y-6",
+            "header": "bg-primary/10 border border-primary/20 rounded-lg p-4",
+            "question": "max-w-[85%] rounded-lg bg-muted border border-border px-3 py-2 text-sm",
+            "response": "max-w-[85%] w-fit rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm",
+            "input": "w-full mt-2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kidney",
+      "title": "Kidney Health",
+      "description": "Evaluating your kidney function",
+      "icon": "Droplets",
+      "layout": "vertical",
+      "questions": [
+        {
+          "id": "ethnicity",
+          "type": "radio",
+          "label": "Ethnicity",
+          "description": "This affects kidney function calculations in medical formulas.",
+          "required": true,
+          "defaultValue": "other",
+          "options": [
+            { "value": "white", "label": "White/Caucasian" },
+            { "value": "black", "label": "Black/African descent" },
+            { "value": "other", "label": "Asian/Hispanic/Other" }
+          ],
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium",
+            "description": "text-xs text-muted-foreground mb-3",
+            "option": "flex items-center space-x-2",
+            "optionLabel": "text-xs"
+          }
+        },
+        {
+          "id": "creatinine",
+          "type": "number",
+          "label": "Serum Creatinine (mg/dL) - Optional",
+          "description": "This blood test measures kidney function. Normal range: 0.7-1.3 mg/dL (men), 0.6-1.1 mg/dL (women)",
+          "placeholder": "e.g. 1.0",
+          "step": 0.1,
+          "required": false,
+          "className": {
+            "container": "space-y-2",
+            "label": "text-sm font-medium",
+            "description": "text-xs text-muted-foreground mb-3",
+            "input": "max-w-xs"
+          }
+        }
+      ],
+      "footer": {
+        "type": "info",
+        "content": {
+          "title": "What affects kidney health?",
+          "items": [
+            "High blood pressure (most common cause)",
+            "Diabetes",
+            "Family history of kidney disease",
+            "Age over 60",
+            "Certain medications (NSAIDs, some antibiotics)",
+            "Smoking"
+          ]
+        },
+        "className": "bg-muted/50 rounded-lg p-4"
+      }
+    },
+    {
+      "id": "results",
+      "title": "Your Results",
+      "description": "Your personalized health assessment",
+      "icon": "CheckCircle",
+      "layout": "results",
+      "customComponent": "QuizResults"
+    }
+  ],
+  "validation": {
+    "basic": ["age", "gender"],
+    "cardiovascular": [],
+    "diabetes": [],
+    "depression": ["phq9Responses"],
+    "anxiety": ["gad7Responses"],
+    "kidney": [],
+    "results": []
+  }
+}

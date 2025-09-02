@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 1.9608%;
+    --foreground: 0 0% 98.0392%;
+    --card: 0 0% 6.2745%;
+    --card-foreground: 0 0% 98.0392%;
+    --popover: 0 0% 1.9608%;
+    --popover-foreground: 0 0% 98.0392%;
+    --primary: 135 59% 49%;
+    --primary-foreground: 0 0% 1.9608%;
+    --secondary: 0 0% 10.1961%;
+    --secondary-foreground: 0 0% 98.0392%;
+    --muted: 0 0% 10.1961%;
+    --muted-foreground: 0 0% 63.9216%;
+    --accent: 0 0% 10.1961%;
+    --accent-foreground: 0 0% 98.0392%;
+    --destructive: 0 62.8205% 30.5882%;
+    --destructive-foreground: 0 0% 98.0392%;
+    --border: 0 0% 14.9020%;
+    --input: 0 0% 14.9020%;
+    --ring: 142.0859 70.5628% 45.2941%;
+    --chart-1: 142.0859 70.5628% 45.2941%;
+    --chart-2: 217.2193 91.2195% 59.8039%;
+    --chart-3: 258.3117 89.5349% 66.2745%;
+    --chart-4: 24.5815 94.9791% 53.1373%;
+    --chart-5: 0 84.2365% 60.1961%;
+    --sidebar: 0 0% 1.9608%;
+    --sidebar-foreground: 0 0% 98.0392%;
+    --sidebar-primary: 142.0859 70.5628% 45.2941%;
+    --sidebar-primary-foreground: 0 0% 1.9608%;
+    --sidebar-accent: 0 0% 10.1961%;
+    --sidebar-accent-foreground: 0 0% 98.0392%;
+    --sidebar-border: 0 0% 14.9020%;
+    --sidebar-ring: 142.0859 70.5628% 45.2941%;
+    --font-sans: var(--font-inter);
+    --font-serif: var(--font-source-serif-4);
+    --font-mono: var(--font-geist-mono);
+    --radius: 1rem;
+    --shadow-2xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10);
+    --shadow: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10);
+    --shadow-md: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 2px 4px -1px hsl(0 0% 0% / 0.10);
+    --shadow-lg: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 4px 6px -1px hsl(0 0% 0% / 0.10);
+    --shadow-xl: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 8px 10px -1px hsl(0 0% 0% / 0.10);
+    --shadow-2xl: 0px 2px 4px 0px hsl(0 0% 0% / 0.25);
+    --tracking-normal: 0.025em;
+    --spacing: 0.25rem;
+  }
+  
+  .light {
+    --background: 0 0% 100%;
+  --foreground: 0 0% 1.9608%;
+  --card: 0 0% 96.0784%;
+  --card-foreground: 0 0% 1.9608%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 1.9608%;
+  --primary: 142.0859 70.5628% 45.2941%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 96.0784%;
+  --secondary-foreground: 0 0% 1.9608%;
+  --muted: 0 0% 96.0784%;
+  --muted-foreground: 220 8.9362% 46.0784%;
+  --accent: 0 0% 96.0784%;
+  --accent-foreground: 0 0% 1.9608%;
+  --destructive: 0 84.2365% 60.1961%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 89.8039%;
+  --input: 0 0% 89.8039%;
+  --ring: 142.0859 70.5628% 45.2941%;
+  --chart-1: 142.0859 70.5628% 45.2941%;
+  --chart-2: 217.2193 91.2195% 59.8039%;
+  --chart-3: 258.3117 89.5349% 66.2745%;
+  --chart-4: 24.5815 94.9791% 53.1373%;
+  --chart-5: 0 84.2365% 60.1961%;
+  --sidebar: 0 0% 100%;
+  --sidebar-foreground: 0 0% 1.9608%;
+  --sidebar-primary: 142.0859 70.5628% 45.2941%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 0 0% 96.0784%;
+  --sidebar-accent-foreground: 0 0% 1.9608%;
+  --sidebar-border: 0 0% 89.8039%;
+  --sidebar-ring: 142.0859 70.5628% 45.2941%;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-source-serif-4);
+  --font-mono: var(--font-geist-mono);
+  --radius: 1rem;
+  --shadow-2xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 2px 4px -1px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 4px 6px -1px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0px 2px 4px 0px hsl(0 0% 0% / 0.25);
+  --tracking-normal: 0rem;
+  --spacing: 0.25rem;
+  }
+  
+  body {
+    letter-spacing: var(--tracking-normal);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+}
